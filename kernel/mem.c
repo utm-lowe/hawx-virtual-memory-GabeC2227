@@ -350,7 +350,7 @@ kernel_map_range(pagetable_t pagetable, uint64 va, uint64 size, uint64 pa, int p
   // kernel. This function will only be used at boot time.
   // YOUR CODE HERE
   
-  uint64 start = PGROUNDDOWN(va);
+uint64 start = PGROUNDDOWN(va);
   uint64 end = PGROUNDUP(va + size);
 
   for(uint64 a = start; a < end; a+= PGSIZE) {
@@ -376,17 +376,9 @@ free_range(void *pa_start, void *pa_end) {
 
     vm_page_free(p);
   }
-}
 
 
-static void
-free_range(void *pa_start, void *pa_end)
-{
-  char *p;
-  p = (char*)PGROUNDUP((uint64)pa_start);
-  for(; p + PGSIZE <= (char*)pa_end; p += PGSIZE) {
-    vm_page_free(p);
-  }
+
 }
 
 
